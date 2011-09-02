@@ -32,7 +32,6 @@ ignoreList = []
 def read(request):
     getInitialFeed = feedparser.parse(PROTO + USERNAME + ":" + PASSWORD + "@" + SERVER + PATH)
     lastModified = getInitialFeed.entries[0].modified
-
     while True:
         scrapedFeed = feedparser.parse(PROTO+USERNAME+":"+PASSWORD+"@"+SERVER+PATH)
         scrapedModified = scrapedFeed.entries[0].modified
