@@ -1,9 +1,9 @@
 #from mail.models import*
 from workstatus.mail.models import Message, User
 
-def addMessage(user, email1, content, time1):
+def addMessage(user, email1, content, time1, underscorename):
     """adds message to db"""
-    tempMessage = Message(user = user, emailaddress = email1, content = content, time1 = time1)
+    tempMessage = Message(user = user, emailaddress = email1, content = content, time1 = time1, underscorename = underscorename)
     tempMessage.save()
 
 def addUser(name, address, first):
