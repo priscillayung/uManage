@@ -53,7 +53,8 @@ def read(request):
             time1 = str(scrapedModified) #parse into string so it can be sliced
             time2 = time1[:10]+' '+time1[11:19] #edit string into a time that can be parsed
             time3 = datetime.strptime(time2, '%Y-%m-%d %H:%M:%S') #parse string into a datetime object
-            addMessage(user, email1, content, time3) #add new Message object to database
+            underscorename = convert(user.username,' ','_')
+            addMessage(user, email1, content, time3, underscorename) #add new Message object to database
         
         current = str(time.strftime('%X'))
         today = date.today()
@@ -79,14 +80,13 @@ def parser(request):
 
     content0 = showEntries[0].content
     user0 = showEntries[0].user.username
+    under0 = showEntries[0].underscorename
     time0 = str(showEntries[0].time1)
-    space = find(user0,' ')
-    name0 = user0[:space]+'_'+user0[(space+1):]
     
     showEntries.remove(showEntries[0])
 
     template = get_template('testing.html')
-    variables = Context({'showEntries':showEntries, 'name0':name0, 'content0':content0, 'time0':time0, 'user0':user0})
+    variables = Context({'showEntries':showEntries, 'under0':under0, 'content0':content0, 'time0':time0, 'user0':user0})
     output = template.render(variables)
 
     return HttpResponse(output)
@@ -95,8 +95,7 @@ def parser(request):
 
 def user_page(request,name):
     messages = []
-    underscore = find(name,'_') #convert '_' to ' ' and parse name from url into username
-    username = name[:underscore]+' '+name[(underscore+1):] 
+    username = convert(name, '_', ' ')
     user1 = User.objects.get(username = username) #find user by username
     user_msgs = list(Message.objects.filter(user = user1)) #list(QuerySet of messages by user)
     user_msgs.reverse()
@@ -118,5 +117,9 @@ def user_page(request,name):
     
     return HttpResponse(output)
 
-
+def convert (name, char1, char2):
+    """takes a string and converts char1 to char2"""
+    target = find(name,char1)
+    final = name[:target]+char2+name[(target+1):]
+    return final
     

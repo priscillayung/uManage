@@ -8,21 +8,16 @@
         <h1>uManage</h1>
 	
         
-        <p><font size = "5">"</font>
-            <font size="4">{{content0}}</font>
-            <font size = "5">"</font>
-        <br>
-            <font size = "5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
-            <font size = "2">--<b><a href="{{name0}}">{{user0}}</a></b> at {{time0}}</font></p>
+        <h3><b>"{{content0}}"</b></h3>
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            --<a href="{{under0}}"><b>{{user0}}</b></a> at {{time0}}</p><br>
         
         {% for x in showEntries %}
         <p>
-            {{x.content}}<br>
-            {{x.time}}
+            <b>"{{x.content}}"</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--<b><a href="{{x.underscorename}}">{{x.user.username}}</a></b> at {{x.time1}}</font></p>
         <br></p>
         {% endfor %}
-
-        
 
 </body>
 </html>

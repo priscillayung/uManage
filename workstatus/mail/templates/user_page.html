@@ -4,11 +4,12 @@
     </head>
     <body>
         <h1>What has {{first_name}} been up to?</h1><br>
-        <p><font size = "5">"</font>{{content0}}<font size = "5">"</font>
-        <br><font size = "3">At {{time0}}</font></p>
+        <h3><b>"{{content0}}"</b></h3>
+        <p>At {{time0}}</p>
         <br><br>
         {% for i in messages %}
-            <p>"{{i.content}}"<br>
-            <font size = "0.8">At {{i.time1}}</font></p>
-            <br>
+            <p><b>"{{i.content}}"</b><br>
+            At {{i.time1}}</p><br>
         {% endfor %}
+        <br>
+	<a href="/updates">Back<a>
