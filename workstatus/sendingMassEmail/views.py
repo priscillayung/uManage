@@ -10,17 +10,17 @@ from django.core.mail import EmailMultiAlternatives #
 from django.template.loader import render_to_string #
 from django.utils.html import strip_tags #
 from workstatus.mail.models import *
-import feedparser
+from mail import feedparser
 import time
 
 
     
     
 def check(current, day):
-    if day == 5 and current == '13:08:00':
+    if day == 5 and current == '11:26:20':
             sendMorningMail()
             time.sleep(1)
-    elif day == 5 and current == '13:08:10':
+    elif day == 5 and current == '10:27:00':
             sendReminderMail()
             time.sleep(1)
  
