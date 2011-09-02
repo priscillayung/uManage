@@ -79,25 +79,43 @@ def parser(request):
     content0 = showEntries[0].content
     user0 = showEntries[0].user.username
     time0 = str(showEntries[0].time1)
+    space = find(user0,' ')
+    name0 = user0[:space]+'_'+user0[(space+1):]
     
     showEntries.remove(showEntries[0])
 
     template = get_template('testing.html')
-    variables = Context({'showEntries':showEntries, 'content0':content0, 'time0':time0, 'user0':user0})
+    variables = Context({'showEntries':showEntries, 'name0':name0, 'content0':content0, 'time0':time0, 'user0':user0})
     output = template.render(variables)
 
     return HttpResponse(output)
 
 #############################################################################################################
 
-def user_page(request,username):
-    user1 = User.objects.get(username=username)
-    user_msgs = Message.objects.filter(user = user1)    
-    template = get_template('user_page.html')
-   
-    variables = Context({ 'messages':user_msgs })
+def user_page(request,name):
+    messages = []
+    underscore = find(name,'_') #convert '_' to ' ' and parse name from url into username
+    username = name[:underscore]+' '+name[(underscore+1):] 
+    user1 = User.objects.get(username = username) #find user by username
+    user_msgs = list(Message.objects.filter(user = user1)) #list(QuerySet of messages by user)
+    user_msgs.reverse()
+    first_name = User.objects.get(username = username).first_name
     
+    initial = user_msgs[0]
+    time0 = initial.time1
+    content0 = initial.content
+    
+    if len(user_msgs) > 1: x = 1
+    else: x = 0
+        
+    for i in range (x,len(user_msgs)):
+        messages.append(i)
+    
+    template = get_template('user_page.html')
+    variables = Context({ 'messages':messages, 'first_name':first_name, 'time0':time0, 'content0':content0})   
+    #output = str(len(messages))
     output = template.render(variables)
+    
     return HttpResponse(output)
 
 
