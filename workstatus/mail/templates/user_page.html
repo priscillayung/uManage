@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>{{first_name}}'s Work Updates</title>
+    </head>
+    <body>
+        <h1>What has {{first_name}} been up to?</h1><br>
+        <p><font size = "20">"</font>{{content}}<font size = "20">"</font>
+        <br><font size = "8">At {{time1}}</font></p>
+        <br><br>
+        {%for i in range(1,len(messages))%}
+        <p>"{{message[i].content}}"<br>
+        <font size = "0.8">At {{messages[0].time1}}</font></p>
+        <br>
+        {% endfor %}

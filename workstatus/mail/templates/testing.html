@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>uManage | Myplanet Digital</title>
+</head>
+
+<body>
+        <h1>uManage</h1>
+	
+        
+        <p><font size = "5">"</font>
+            <font size="4">{{content0}}</font>
+            <font size = "5">"</font>
+        <br>
+            <font size = "5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+            <font size = "2">--<b><a href="user_page.html">{{user0}}</a></b> at {{time0}}</font></p>
+        
+        {% for x in showEntries %}
+        <p>
+            {{x.content}}<br>
+            {{x.time}}
+        <br></p>
+        {% endfor %}
+
+        
+
+</body>
+</html>
