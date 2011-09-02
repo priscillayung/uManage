@@ -17,10 +17,10 @@ import time
     
     
 def check(current, day):
-    if day == 4 and current == '17:45:40':
+    if day == 5 and current == '10:36:20':
             sendMorningMail()
             time.sleep(1)
-    elif day == 4 and current == '17:47:50':
+    elif day == 5 and current == '10:39:00':
             sendReminderMail()
             time.sleep(1)
  
