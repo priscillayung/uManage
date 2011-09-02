@@ -109,11 +109,10 @@ def user_page(request,name):
     else: x = 0
         
     for i in range (x,len(user_msgs)):
-        messages.append(i)
+        messages.append(user_msgs[i])
     
     template = get_template('user_page.html')
     variables = Context({ 'messages':messages, 'first_name':first_name, 'time0':time0, 'content0':content0})   
-    #output = str(len(messages))
     output = template.render(variables)
     
     return HttpResponse(output)
