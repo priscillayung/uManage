@@ -30,6 +30,7 @@ ignoreList = []
 
 ###########################################################################################################    
 def read(request):
+    sendReminderMail()
     getInitialFeed = feedparser.parse(PROTO + USERNAME + ":" + PASSWORD + "@" + SERVER + PATH)
     lastModified = getInitialFeed.entries[0].modified
     while True:
